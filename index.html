@@ -2,75 +2,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sanjay Wazirawat CSC + Jobs + Document Tool</title>
+<title>Sanjay Wazirawat - All India Govt Jobs</title>
 
 <style>
 body{
-  font-family:Arial;
   margin:0;
+  font-family:Arial;
   background:#f5f5f5;
-  text-align:center;
 }
 
 header{
-  background:linear-gradient(90deg,#16a34a,#22c55e);
+  background:#16a34a;
   color:white;
   padding:18px;
   font-size:20px;
   font-weight:bold;
+  text-align:center;
+}
+
+.nav{
+  background:#222;
+  padding:10px;
+  text-align:center;
+}
+
+.nav a{
+  color:white;
+  margin:8px;
+  text-decoration:none;
+  font-size:13px;
 }
 
 .section-title{
-  margin-top:25px;
-  font-size:22px;
-}
-
-.card{
   background:white;
-  margin:10px;
-  padding:15px;
-  width:270px;
-  display:inline-block;
-  border-radius:10px;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
-  vertical-align:top;
-}
-
-.btn{
-  display:inline-block;
-  margin-top:10px;
-  padding:8px 12px;
-  background:green;
-  color:white;
-  text-decoration:none;
-  border-radius:6px;
-}
-
-input,select{
-  width:85%;
   padding:10px;
-  margin:8px;
+  margin-top:15px;
+  font-size:18px;
+  font-weight:bold;
+  border-left:5px solid #16a34a;
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:10px;
   border-radius:8px;
   border:1px solid #ccc;
 }
 
-canvas{
-  max-width:100%;
-  margin-top:10px;
+.table{
+  width:95%;
+  margin:auto;
+  background:white;
+  border-collapse:collapse;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
-.tag{
-  background:#eee;
-  padding:4px 6px;
+.table th, .table td{
+  border:1px solid #ddd;
+  padding:8px;
+  font-size:13px;
+  text-align:center;
+}
+
+.table th{
+  background:#16a34a;
+  color:white;
+}
+
+.btn{
+  padding:5px 8px;
+  background:#16a34a;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
   font-size:12px;
-  border-radius:6px;
 }
 
 footer{
-  margin-top:30px;
+  margin-top:20px;
   padding:10px;
   background:#222;
   color:white;
+  text-align:center;
+  font-size:12px;
 }
 </style>
 </head>
@@ -78,118 +93,97 @@ footer{
 <body>
 
 <header>
-🔥 Sanjay Wazirawat CSC Portal + Jobs + Document Tool
-<br>
-📞 8168205553
+🔥 All India Govt Jobs Portal - Sanjay Wazirawat
 </header>
 
-<!-- CSC -->
-<div class="section-title">📄 CSC Services</div>
-
-<div class="card">
-<h3>Aadhaar</h3>
-<a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a>
+<div class="nav">
+<a href="#">Home</a>
+<a href="#bank">Bank</a>
+<a href="#ssc">SSC</a>
+<a href="#upsc">UPSC</a>
+<a href="#railway">Railway</a>
 </div>
 
-<div class="card">
-<h3>PAN Card</h3>
-<a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a>
-</div>
+<input id="search" placeholder="Search Jobs (SSC, Bank, Railway...)" onkeyup="searchTable()">
 
-<!-- JOBS -->
-<div class="section-title">🔥 All India Jobs</div>
+<!-- BANK JOBS -->
+<div class="section-title" id="bank">🏦 Bank Jobs</div>
 
-<div class="card">
-<h3>SSC / Railway / Police</h3>
-<p>Latest govt jobs updates</p>
-<a class="btn" href="https://www.google.com/search?q=latest+government+jobs+india" target="_blank">
-View Jobs
-</a>
-</div>
+<table class="table" id="jobTable">
+<tr>
+<th>Date</th><th>Board</th><th>Post</th><th>Last Date</th><th>Link</th>
+</tr>
 
-<!-- DOCUMENT SIZE GUIDE -->
-<div class="section-title">📏 Document Size Guide</div>
+<tr>
+<td>13/04/2026</td><td>SBI</td><td>Business Analyst</td><td>04-05-2026</td>
+<td><a class="btn" href="#">View</a></td>
+</tr>
 
-<div class="card">
-<h3>Allowed Sizes</h3>
+<tr>
+<td>10/04/2026</td><td>Central Bank</td><td>Officer</td><td>30-04-2026</td>
+<td><a class="btn" href="#">View</a></td>
+</tr>
 
-<p>📄 PDF: 100KB - 500KB</p>
-<p>🖼 JPEG: 20KB - 100KB</p>
-<p>🖼 PNG: 20KB - 100KB</p>
-<p>📝 Word (DOC): 100KB - 1MB</p>
-</div>
+<tr>
+<td>01/04/2026</td><td>Bank of Baroda</td><td>Manager</td><td>16-04-2026</td>
+<td><a class="btn" href="#">View</a></td>
+</tr>
+</table>
 
-<!-- DOCUMENT RESIZER -->
-<div class="section-title">🧾 Document Resizer Tool</div>
+<!-- SSC -->
+<div class="section-title" id="ssc">📘 SSC Jobs</div>
 
-<div class="card" style="width:300px;">
+<table class="table">
+<tr>
+<th>Date</th><th>Board</th><th>Post</th><th>Last Date</th><th>Link</th>
+</tr>
 
-<p>Upload Image (JPEG/PNG)</p>
+<tr>
+<td>13/04/2026</td><td>SSC</td><td>Selection Post Phase 14</td><td>04-05-2026</td>
+<td><a class="btn" href="#">View</a></td>
+</tr>
+</table>
 
-<input type="file" id="img">
+<!-- UPSC -->
+<div class="section-title" id="upsc">🏛 UPSC Jobs</div>
 
-<label>Resize %</label>
-<input type="range" id="size" min="10" max="100" value="100">
+<table class="table">
+<tr>
+<th>Date</th><th>Board</th><th>Post</th><th>Last Date</th><th>Link</th>
+</tr>
 
-<label>Quality</label>
-<input type="range" id="quality" min="10" max="100" value="80">
-
-<label>Background Color</label>
-<input type="color" id="bg" value="#ffffff">
-
-<button class="btn" onclick="convert()">Convert</button>
-
-<canvas id="canvas"></canvas>
-
-<br>
-
-<a class="btn" id="download" download="document.jpg">Download</a>
-
-</div>
+<tr>
+<td>11/04/2026</td><td>UPSC</td><td>Officer Posts</td><td>01-05-2026</td>
+<td><a class="btn" href="#">View</a></td>
+</tr>
+</table>
 
 <script>
 
-// IMAGE RESIZER (SAFE CLIENT SIDE)
-function convert(){
+// SEARCH FUNCTION (FILTER TABLE)
+function searchTable(){
+let input=document.getElementById("search").value.toLowerCase();
+let tables=document.getElementsByTagName("table");
 
-let file=document.getElementById("img").files[0];
-if(!file){
-alert("Please select file");
-return;
+for(let t of tables){
+let rows=t.getElementsByTagName("tr");
+
+for(let i=1;i<rows.length;i++){
+let rowText=rows[i].innerText.toLowerCase();
+
+if(rowText.includes(input)){
+rows[i].style.display="";
+}else{
+rows[i].style.display="none";
 }
-
-let size=document.getElementById("size").value/100;
-let quality=document.getElementById("quality").value/100;
-let bg=document.getElementById("bg").value;
-
-let canvas=document.getElementById("canvas");
-let ctx=canvas.getContext("2d");
-
-let img=new Image();
-img.src=URL.createObjectURL(file);
-
-img.onload=function(){
-
-canvas.width=img.width*size;
-canvas.height=img.height*size;
-
-ctx.fillStyle=bg;
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.drawImage(img,0,0,canvas.width,canvas.height);
-
-let url=canvas.toDataURL("image/jpeg",quality);
-
-document.getElementById("download").href=url;
-
 }
-
+}
 }
 
 </script>
 
 <footer>
-© 2026 Sanjay Wazirawat CSC Portal
+© 2026 Sanjay Wazirawat | All India Govt Jobs Portal
 </footer>
 
 </body>
