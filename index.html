@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sanjay CSC + Job + Tools Portal</title>
+  <title>CSC + Jobs + Tools Portal</title>
 
   <style>
     body { font-family: Arial; margin:0; background:#f5f5f5; text-align:center; }
@@ -56,7 +56,7 @@
       margin-right:5px;
     }
 
-    input, select {
+    input {
       padding:8px;
       margin:5px;
       width:80%;
@@ -66,18 +66,6 @@
       margin-top:10px;
       max-width:100%;
     }
-
-    .whatsapp {
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      background:#25D366;
-      color:white;
-      padding:12px;
-      border-radius:50px;
-      text-decoration:none;
-      font-weight:bold;
-    }
   </style>
 </head>
 
@@ -85,22 +73,18 @@
 
 <header>🔥 CSC + Jobs + Tools Portal</header>
 
-<!-- SERVICES -->
 <h2>🧾 CSC Services</h2>
 
 <div class="card"><h3>Aadhaar</h3><a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a></div>
 <div class="card"><h3>PAN</h3><a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a></div>
-<div class="card"><h3>Haryana Saral</h3><a class="btn" href="https://saralharyana.gov.in/" target="_blank">Open</a></div>
 
-<!-- JOBS -->
 <h2>🔥 Latest Jobs</h2>
 
 <input placeholder="Search Jobs..." onkeyup="searchJobs(this.value)">
 
-<div class="job-box" id="jobs">Loading...</div>
+<div class="job-box" id="jobs">Loading demo jobs...</div>
 
-<!-- IMAGE TOOL -->
-<h2>🧠 Sanjay Document Resizer / Compressor</h2>
+<h2>🧠 Image Resizer Tool</h2>
 
 <div class="card" style="width:90%;">
 
@@ -113,12 +97,12 @@
 
   <br>
 
-  <label>Quality (KB/MB control)</label>
+  <label>Quality</label>
   <input type="range" id="quality" min="10" max="100" value="80">
 
   <br>
 
-  <label>Background Color</label>
+  <label>Background</label>
   <input type="color" id="bg" value="#ffffff">
 
   <br>
@@ -131,23 +115,18 @@
 
   <br>
 
-  <a class="btn" id="download" download="sanjay-image.jpg">Download</a>
+  <a class="btn" id="download" download="image.jpg">Download</a>
 
 </div>
 
 <script>
-// ---------------- JOB SYSTEM ----------------
-let jobsData = [];
 
-async function loadJobs(){
-  try{
-    let res = await fetch("https://your-backend-api.com/jobs");
-    jobsData = await res.json();
-    showJobs(jobsData);
-  } catch(e){
-    document.getElementById("jobs").innerHTML = "Backend connect nahi ho raha";
-  }
-}
+// ---------------- DEMO JOBS (NO ERROR) ----------------
+let jobsData = [
+  { title:"SSC GD Constable 2026", category:"SSC", lastDate:"25 April 2026", eligibility:"10th Pass", link:"https://ssc.nic.in" },
+  { title:"Railway Group D", category:"Railway", lastDate:"30 April 2026", eligibility:"10th Pass", link:"https://indianrailways.gov.in" },
+  { title:"Police Vacancy", category:"Police", lastDate:"20 April 2026", eligibility:"12th Pass", link:"#"}
+];
 
 function showJobs(data){
   let html = "";
@@ -162,19 +141,26 @@ function showJobs(data){
       </div>
     `;
   });
+
   document.getElementById("jobs").innerHTML = html;
 }
 
 function searchJobs(q){
-  let f = jobsData.filter(j=>j.title.toLowerCase().includes(q.toLowerCase()));
+  let f = jobsData.filter(j => j.title.toLowerCase().includes(q.toLowerCase()));
   showJobs(f);
 }
 
-loadJobs();
+showJobs(jobsData);
 
-// ---------------- IMAGE TOOL ----------------
+// ---------------- IMAGE TOOL SAFE ----------------
 function processImage(){
+
   let file = document.getElementById("imgInput").files[0];
+  if(!file){
+    alert("Please image select karo");
+    return;
+  }
+
   let size = document.getElementById("size").value / 100;
   let quality = document.getElementById("quality").value / 100;
   let bg = document.getElementById("bg").value;
