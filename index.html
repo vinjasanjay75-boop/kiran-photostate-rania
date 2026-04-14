@@ -2,82 +2,141 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>India Smart CSC + Job Portal</title>
+<title>Sanjay Wazirawat CSC + Jobs + APK Portal</title>
 
 <style>
 body{
   margin:0;
   font-family:Arial;
-  background:#0f172a;
-  color:white;
+  background:#f8f8f8;
   text-align:center;
 }
 
 header{
   background:linear-gradient(90deg,#16a34a,#22c55e);
+  color:white;
   padding:18px;
-  font-size:22px;
+  font-size:20px;
   font-weight:bold;
 }
 
-input{
-  width:90%;
-  padding:12px;
+.nav{
+  background:#222;
+  padding:10px;
+}
+
+.nav a{
+  color:white;
   margin:10px;
-  border-radius:10px;
-  border:none;
-  outline:none;
+  text-decoration:none;
 }
 
 .card{
-  background:#1e293b;
+  background:white;
   margin:10px;
   padding:15px;
-  border-radius:12px;
   display:inline-block;
-  width:260px;
+  width:270px;
+  border-radius:10px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
   vertical-align:top;
-  text-align:left;
 }
 
 .btn{
   display:inline-block;
   margin-top:10px;
-  padding:8px;
-  background:#22c55e;
+  padding:8px 12px;
+  background:green;
   color:white;
   text-decoration:none;
-  border-radius:8px;
+  border-radius:6px;
 }
 
 .tag{
-  font-size:12px;
-  background:#334155;
+  background:#eee;
   padding:4px 6px;
+  font-size:12px;
   border-radius:6px;
-  margin-right:5px;
-  display:inline-block;
 }
 
-.section{
-  width:90%;
-  margin:auto;
+input{
+  width:80%;
+  padding:10px;
+  margin:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.job-card{
+  background:white;
+  margin:10px;
+  padding:15px;
+  border-radius:10px;
+  width:270px;
+  display:inline-block;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:12px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 footer{
-  margin-top:20px;
+  margin-top:30px;
   padding:10px;
-  background:#0b1220;
+  background:#222;
+  color:white;
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
 
-<header>🔥 India Smart CSC + Job Portal</header>
+<header>
+🔥 Sanjay Wazirawat CSC & Job Portal
+<br>
+📞 8168205553 | Rania
+</header>
 
-<input id="search" placeholder="Search Jobs..." onkeyup="searchJobs()">
+<div class="nav">
+<a href="#">Home</a>
+<a href="#jobs">Jobs</a>
+<a href="#apk">APK</a>
+</div>
 
+<h2>🔥 Latest Jobs</h2>
+
+<input id="search" placeholder="Search jobs..." onkeyup="searchJobs()">
+
+<div id="jobBox"></div>
+
+<!-- APK SECTION -->
+<h2 id="apk">📱 Mobile App (APK Download)</h2>
+
+<div class="card">
+<h3>CSC & Jobs App</h3>
+<p>Install mobile app for faster access</p>
+
+<!-- DEMO APK LINK -->
+<a class="btn" href="https://drive.google.com" target="_blank">
+⬇ Download APK
+</a>
+
+<p style="font-size:12px;color:gray;">
+Note: APK file Google Drive ya hosting par upload karna hoga
+</p>
+</div>
+
+<!-- CSC -->
 <h2>🧾 CSC Services</h2>
 
 <div class="card">
@@ -90,59 +149,37 @@ footer{
 <a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a>
 </div>
 
-<div class="card">
-<h3>Parivahan (DL)</h3>
-<a class="btn" href="https://parivahan.gov.in/" target="_blank">Open</a>
-</div>
-
-<h2>🔥 Latest Jobs</h2>
-
-<div id="jobs" class="section"></div>
-
-<h2>📄 Document Guide</h2>
-
-<div class="card">
-✔ Photo: 20KB - 50KB<br>
-✔ Signature: 10KB - 20KB<br>
-✔ Form: 200KB - 2MB<br>
-✔ PDF: 100KB - 1MB
-</div>
-
-<div class="card">
-<h3>Official Links</h3>
-<a class="btn" href="https://voters.eci.gov.in/" target="_blank">Voter ID</a><br>
-<a class="btn" href="https://parivahan.gov.in/" target="_blank">Driving License</a>
-</div>
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/918168205553">WhatsApp</a>
 
 <footer>
-© CSC & Job Portal | India
+© 2026 Sanjay Wazirawat CSC Portal
 </footer>
 
 <script>
 
-// SAFE DEMO JOB DATA (NO ERROR)
-let jobs = [
-{title:"SSC GD Constable 2026",cat:"SSC",date:"25 Apr 2026"},
-{title:"Railway Group D Vacancy",cat:"Railway",date:"30 Apr 2026"},
-{title:"Police Bharti 2026",cat:"Police",date:"20 Apr 2026"},
-{title:"Bank Clerk Recruitment",cat:"Bank",date:"10 May 2026"},
-{title:"Army Rally Bharti",cat:"Army",date:"15 May 2026"}
+let jobs=[
+{title:"SSC GD Constable 2026",cat:"SSC"},
+{title:"Railway Group D Vacancy",cat:"Railway"},
+{title:"Police Bharti 2026",cat:"Police"},
+{title:"Bank Clerk Vacancy",cat:"Bank"}
 ];
 
 function show(data){
 let html="";
 data.forEach(j=>{
 html+=`
-<div class="card">
+<div class="job-card">
 <h3>${j.title}</h3>
 <span class="tag">${j.cat}</span>
-<span class="tag">${j.date}</span>
-<p>Apply on official government website only.</p>
-<a class="btn" href="https://www.google.com/search?q=${j.title}" target="_blank">View Details</a>
+<p>Official search</p>
+<a class="btn" href="https://www.google.com/search?q=${j.title}" target="_blank">
+View
+</a>
 </div>
 `;
 });
-document.getElementById("jobs").innerHTML=html;
+document.getElementById("jobBox").innerHTML=html;
 }
 
 function searchJobs(){
