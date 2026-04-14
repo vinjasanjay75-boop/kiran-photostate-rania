@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sanjay Wazirawat CSC Portal</title>
+  <title>Sanjay CSC + Job + Tools Portal</title>
 
   <style>
-    body { font-family: Arial; margin:0; text-align:center; }
+    body { font-family: Arial; margin:0; background:#f5f5f5; text-align:center; }
 
-    .nav {
-      background:#222;
-      padding:12px;
-    }
-
-    .nav a {
+    header {
+      background:green;
       color:white;
-      margin:10px;
-      text-decoration:none;
+      padding:15px;
+      font-size:20px;
     }
 
     .card {
-      border:1px solid #ccc;
+      background:white;
       margin:10px;
       padding:15px;
+      border-radius:10px;
       display:inline-block;
       width:260px;
-      border-radius:10px;
+      vertical-align:top;
     }
 
     .btn {
@@ -34,10 +31,40 @@
       color:white;
       text-decoration:none;
       border-radius:5px;
+      cursor:pointer;
     }
 
-    .call {
-      background:blue;
+    .job-box {
+      width:90%;
+      margin:auto;
+      background:white;
+      padding:15px;
+      border-radius:10px;
+      text-align:left;
+    }
+
+    .job {
+      border-bottom:1px solid #ddd;
+      padding:10px 0;
+    }
+
+    .tag {
+      font-size:12px;
+      background:#eee;
+      padding:3px 6px;
+      border-radius:5px;
+      margin-right:5px;
+    }
+
+    input, select {
+      padding:8px;
+      margin:5px;
+      width:80%;
+    }
+
+    canvas {
+      margin-top:10px;
+      max-width:100%;
     }
 
     .whatsapp {
@@ -51,92 +78,129 @@
       text-decoration:none;
       font-weight:bold;
     }
-
-    footer {
-      margin-top:20px;
-      padding:10px;
-      background:#f1f1f1;
-    }
   </style>
 </head>
 
 <body>
 
-<div class="nav">
-  <a href="#">Home</a>
-</div>
-
-<h2>Sanjay Wazirawat CSC Portal</h2>
+<header>🔥 CSC + Jobs + Tools Portal</header>
 
 <!-- SERVICES -->
+<h2>🧾 CSC Services</h2>
 
-<div class="card">
-  <h3>Aadhaar Services</h3>
-  <a class="btn" href="https://uidai.gov.in/">Open</a>
+<div class="card"><h3>Aadhaar</h3><a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a></div>
+<div class="card"><h3>PAN</h3><a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a></div>
+<div class="card"><h3>Haryana Saral</h3><a class="btn" href="https://saralharyana.gov.in/" target="_blank">Open</a></div>
+
+<!-- JOBS -->
+<h2>🔥 Latest Jobs</h2>
+
+<input placeholder="Search Jobs..." onkeyup="searchJobs(this.value)">
+
+<div class="job-box" id="jobs">Loading...</div>
+
+<!-- IMAGE TOOL -->
+<h2>🧠 Sanjay Document Resizer / Compressor</h2>
+
+<div class="card" style="width:90%;">
+
+  <input type="file" id="imgInput">
+
+  <br>
+
+  <label>Resize %</label>
+  <input type="range" id="size" min="10" max="100" value="100">
+
+  <br>
+
+  <label>Quality (KB/MB control)</label>
+  <input type="range" id="quality" min="10" max="100" value="80">
+
+  <br>
+
+  <label>Background Color</label>
+  <input type="color" id="bg" value="#ffffff">
+
+  <br>
+
+  <button class="btn" onclick="processImage()">Convert</button>
+
+  <br>
+
+  <canvas id="canvas"></canvas>
+
+  <br>
+
+  <a class="btn" id="download" download="sanjay-image.jpg">Download</a>
+
 </div>
 
-<div class="card">
-  <h3>PAN Card</h3>
-  <a class="btn" href="https://www.onlineservices.nsdl.com/">Open</a>
-</div>
+<script>
+// ---------------- JOB SYSTEM ----------------
+let jobsData = [];
 
-<div class="card">
-  <h3>Haryana Saral Portal</h3>
-  <a class="btn" href="https://saralharyana.gov.in/">Open</a>
-</div>
+async function loadJobs(){
+  try{
+    let res = await fetch("https://your-backend-api.com/jobs");
+    jobsData = await res.json();
+    showJobs(jobsData);
+  } catch(e){
+    document.getElementById("jobs").innerHTML = "Backend connect nahi ho raha";
+  }
+}
 
-<div class="card">
-  <h3>e-Disha / Haryana</h3>
-  <a class="btn" href="https://edisha.gov.in/">Open</a>
-</div>
+function showJobs(data){
+  let html = "";
+  data.forEach(job=>{
+    html += `
+      <div class="job">
+        <b>${job.title}</b><br>
+        <span class="tag">${job.category}</span>
+        <span class="tag">${job.lastDate}</span>
+        <p>${job.eligibility}</p>
+        <a class="btn" href="${job.link}" target="_blank">Apply</a>
+      </div>
+    `;
+  });
+  document.getElementById("jobs").innerHTML = html;
+}
 
-<div class="card">
-  <h3>Land Record / Jamabandi</h3>
-  <a class="btn" href="https://jamabandi.nic.in/">Open</a>
-</div>
+function searchJobs(q){
+  let f = jobsData.filter(j=>j.title.toLowerCase().includes(q.toLowerCase()));
+  showJobs(f);
+}
 
-<div class="card">
-  <h3>Birth Certificate</h3>
-  <a class="btn" href="https://crsorgi.gov.in/">Open</a>
-</div>
+loadJobs();
 
-<!-- JOB POSTS -->
+// ---------------- IMAGE TOOL ----------------
+function processImage(){
+  let file = document.getElementById("imgInput").files[0];
+  let size = document.getElementById("size").value / 100;
+  let quality = document.getElementById("quality").value / 100;
+  let bg = document.getElementById("bg").value;
 
-<div class="card">
-  <h3>Govt Vacancy</h3>
-  <p>Latest job updates</p>
-  <a class="btn" href="#">View</a>
-</div>
+  let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
 
-<div class="card">
-  <h3>Haryana Jobs</h3>
-  <a class="btn" href="#">View</a>
-</div>
+  let img = new Image();
+  img.src = URL.createObjectURL(file);
 
-<div class="card">
-  <h3>Punjab Jobs</h3>
-  <a class="btn" href="#">View</a>
-</div>
+  img.onload = function(){
 
-<div class="card">
-  <h3>Rajasthan Jobs</h3>
-  <a class="btn" href="#">View</a>
-</div>
+    canvas.width = img.width * size;
+    canvas.height = img.height * size;
 
-<!-- CONTACT -->
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-<a class="whatsapp" href="https://wa.me/918168205553">
-  WhatsApp
-</a>
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
 
-<div class="card">
-  <h3>Call Now</h3>
-  <a class="btn call" href="tel:8168205553">Call</a>
-</div>
+    let url = canvas.toDataURL("image/jpeg", quality);
 
-<footer>
-  © Sanjay Wazirawat CSC Portal
-</footer>
+    document.getElementById("download").href = url;
+  }
+}
+</script>
 
 </body>
 </html>
