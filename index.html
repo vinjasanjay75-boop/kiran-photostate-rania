@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Govt Jobs + Document Tool - Sanjay Wazirawat</title>
+<title>CSC + Govt Jobs Portal</title>
 
 <style>
 body{
@@ -11,6 +11,7 @@ body{
   background:#f5f5f5;
 }
 
+/* HEADER */
 header{
   background:#16a34a;
   color:white;
@@ -19,6 +20,7 @@ header{
   font-weight:bold;
 }
 
+/* NAV */
 .nav{
   background:#111827;
   text-align:center;
@@ -32,67 +34,44 @@ header{
   font-size:13px;
 }
 
+/* SEARCH */
+input{
+  width:90%;
+  padding:10px;
+  margin:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+/* SECTION */
 .section{
   background:white;
   margin:10px;
   padding:12px;
-  border-radius:6px;
+  border-radius:8px;
 }
 
+/* JOB BOX */
 .job{
-  background:#fff;
+  border-left:5px solid #16a34a;
   padding:10px;
   margin:10px 0;
-  border-left:5px solid #16a34a;
-  cursor:pointer;
+  background:#fff;
 }
 
+/* BUTTON */
 .btn{
   background:#16a34a;
   color:white;
   padding:6px 10px;
   text-decoration:none;
   border-radius:5px;
+  font-size:12px;
   display:inline-block;
   margin-top:6px;
-  font-size:12px;
 }
 
-.popup{
-  display:none;
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,0.6);
-}
-
-.popup-content{
-  background:white;
-  width:90%;
-  max-width:400px;
-  margin:80px auto;
-  padding:15px;
-  border-radius:10px;
-}
-
-.close{
-  float:right;
-  cursor:pointer;
-  font-size:20px;
-}
-
-input, select{
-  width:95%;
-  padding:10px;
-  margin:5px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-
-canvas{
-  display:none;
-}
-
+/* FOOTER */
 footer{
   background:#111827;
   color:white;
@@ -100,127 +79,138 @@ footer{
   padding:10px;
   font-size:12px;
 }
+
+/* CANVAS HIDE */
+canvas{display:none;}
 </style>
 </head>
 
 <body>
 
 <header>
-🔥 Sanjay Wazirawat - Govt Jobs + Real Document Resizer
+🔥 CSC + Govt Jobs Portal - Sanjay Wazirawat
 </header>
 
 <div class="nav">
 <a href="#jobs">Jobs</a>
-<a href="#doc">Document Tool</a>
+<a href="#csc">CSC Services</a>
+<a href="#tool">Document Tool</a>
 </div>
+
+<input id="search" placeholder="Search Jobs or Services..." onkeyup="search()">
 
 <!-- JOBS -->
 <div class="section" id="jobs">
-<h2>📢 Latest Jobs</h2>
+<h2>📢 Latest Govt Jobs</h2>
 
-<div class="job" onclick="openJob('SSC Selection Post','10th/12th/Graduate','04-05-2026','https://ssc.nic.in/')">
-SSC Selection Post Phase 14
+<div class="job">
+SSC Selection Post Phase 14<br>
+<small>10th / 12th / Graduate</small><br>
+<a class="btn" href="https://ssc.nic.in/" target="_blank">Apply</a>
 </div>
 
-<div class="job" onclick="openJob('Railway Group D','10th Pass','25-05-2026','https://indianrailways.gov.in/')">
-Railway Group D Vacancy
+<div class="job">
+Railway Group D<br>
+<small>10th Pass</small><br>
+<a class="btn" href="https://indianrailways.gov.in/" target="_blank">Apply</a>
 </div>
 
-<div class="job" onclick="openJob('SBI Bank Officer','Graduate','04-05-2026','https://sbi.co.in/')">
-SBI Bank Officer
+<div class="job">
+SBI Bank Officer<br>
+<small>Graduate</small><br>
+<a class="btn" href="https://sbi.co.in/" target="_blank">Apply</a>
+</div>
+
+<div class="job">
+Police Constable<br>
+<small>12th Pass</small><br>
+<a class="btn" href="https://hssc.gov.in/" target="_blank">Apply</a>
 </div>
 
 </div>
 
-<!-- DOCUMENT TOOL -->
-<div class="section" id="doc">
-<h2>📄 REAL Image Compressor (KB Control)</h2>
+<!-- CSC -->
+<div class="section" id="csc">
+<h2>🏢 CSC Services</h2>
+
+<div class="job">Aadhaar Update <br><a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a></div>
+<div class="job">PAN Card Apply <br><a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a></div>
+<div class="job">Voter ID <br><a class="btn" href="https://voters.eci.gov.in/" target="_blank">Open</a></div>
+<div class="job">PM Kisan Yojana <br><a class="btn" href="https://pmkisan.gov.in/" target="_blank">Open</a></div>
+
+</div>
+
+<!-- TOOL -->
+<div class="section" id="tool">
+<h2>📄 Image Compressor (Real Working)</h2>
 
 <input type="file" id="file" accept="image/*">
-
 <select id="quality">
-<option value="0.9">High (near original)</option>
-<option value="0.7">Medium</option>
-<option value="0.5">Low</option>
-<option value="0.3">Very Low</option>
+<option value="0.9">High</option>
+<option value="0.6">Medium</option>
+<option value="0.4">Low</option>
 </select>
 
-<button class="btn" onclick="compressImage()">Compress Image</button>
+<button class="btn" onclick="compress()">Compress</button>
 
 <p id="status"></p>
-<a id="download" class="btn" style="display:none">Download Image</a>
+<a id="download" class="btn" style="display:none">Download</a>
 
 <canvas id="canvas"></canvas>
 <img id="preview" style="max-width:100%;margin-top:10px;">
 </div>
 
-<!-- POPUP -->
-<div id="popup" class="popup">
-<div class="popup-content">
-<span class="close" onclick="closeJob()">×</span>
-
-<h3 id="title"></h3>
-<p id="qual"></p>
-<p id="date"></p>
-
-<a id="apply" class="btn" target="_blank">Apply Now</a>
-
-</div>
-</div>
+<footer>
+© 2026 CSC + Jobs Portal | Sanjay Wazirawat
+</footer>
 
 <script>
 
-/* JOB POPUP */
-function openJob(t,q,d,l){
-document.getElementById("popup").style.display="block";
-document.getElementById("title").innerText=t;
-document.getElementById("qual").innerText="Qualification: "+q;
-document.getElementById("date").innerText="Last Date: "+d;
-document.getElementById("apply").href=l;
+/* SEARCH */
+function search(){
+let input=document.getElementById("search").value.toLowerCase();
+let jobs=document.getElementsByClassName("job");
+
+for(let j of jobs){
+j.style.display=j.innerText.toLowerCase().includes(input)?"block":"none";
+}
 }
 
-function closeJob(){
-document.getElementById("popup").style.display="none";
-}
-
-/* REAL IMAGE COMPRESSION */
-function compressImage(){
-
+/* IMAGE COMPRESS */
+function compress(){
 let file=document.getElementById("file").files[0];
-let quality=parseFloat(document.getElementById("quality").value);
+let q=parseFloat(document.getElementById("quality").value);
 
 if(!file){
-alert("Select image first");
+alert("Select file");
 return;
 }
 
 let reader=new FileReader();
 
 reader.onload=function(e){
-
 let img=new Image();
 img.src=e.target.result;
 
 img.onload=function(){
+let c=document.getElementById("canvas");
+let ctx=c.getContext("2d");
 
-let canvas=document.getElementById("canvas");
-let ctx=canvas.getContext("2d");
-
-canvas.width=img.width;
-canvas.height=img.height;
+c.width=img.width;
+c.height=img.height;
 
 ctx.drawImage(img,0,0);
 
-let compressed=canvas.toDataURL("image/jpeg",quality);
+let out=c.toDataURL("image/jpeg",q);
 
-document.getElementById("preview").src=compressed;
+document.getElementById("preview").src=out;
 
-let link=document.getElementById("download");
-link.href=compressed;
-link.download="compressed.jpg";
-link.style.display="inline-block";
+let d=document.getElementById("download");
+d.href=out;
+d.download="compressed.jpg";
+d.style.display="inline-block";
 
-document.getElementById("status").innerHTML="✔ Image compressed successfully";
+document.getElementById("status").innerText="✔ Compressed Successfully";
 };
 };
 
@@ -228,10 +218,6 @@ reader.readAsDataURL(file);
 }
 
 </script>
-
-<footer>
-© 2026 Sanjay Wazirawat | Govt Jobs Portal
-</footer>
 
 </body>
 </html>
