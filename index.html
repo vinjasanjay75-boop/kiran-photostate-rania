@@ -1,191 +1,158 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CSC + Jobs + Tools Portal</title>
+<meta charset="UTF-8">
+<title>India Smart CSC + Job Portal</title>
 
-  <style>
-    body { font-family: Arial; margin:0; background:#f5f5f5; text-align:center; }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
+  text-align:center;
+}
 
-    header {
-      background:green;
-      color:white;
-      padding:15px;
-      font-size:20px;
-    }
+header{
+  background:linear-gradient(90deg,#16a34a,#22c55e);
+  padding:18px;
+  font-size:22px;
+  font-weight:bold;
+}
 
-    .card {
-      background:white;
-      margin:10px;
-      padding:15px;
-      border-radius:10px;
-      display:inline-block;
-      width:260px;
-      vertical-align:top;
-    }
+input{
+  width:90%;
+  padding:12px;
+  margin:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+}
 
-    .btn {
-      display:inline-block;
-      padding:8px;
-      margin-top:10px;
-      background:green;
-      color:white;
-      text-decoration:none;
-      border-radius:5px;
-      cursor:pointer;
-    }
+.card{
+  background:#1e293b;
+  margin:10px;
+  padding:15px;
+  border-radius:12px;
+  display:inline-block;
+  width:260px;
+  vertical-align:top;
+  text-align:left;
+}
 
-    .job-box {
-      width:90%;
-      margin:auto;
-      background:white;
-      padding:15px;
-      border-radius:10px;
-      text-align:left;
-    }
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px;
+  background:#22c55e;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+}
 
-    .job {
-      border-bottom:1px solid #ddd;
-      padding:10px 0;
-    }
+.tag{
+  font-size:12px;
+  background:#334155;
+  padding:4px 6px;
+  border-radius:6px;
+  margin-right:5px;
+  display:inline-block;
+}
 
-    .tag {
-      font-size:12px;
-      background:#eee;
-      padding:3px 6px;
-      border-radius:5px;
-      margin-right:5px;
-    }
+.section{
+  width:90%;
+  margin:auto;
+}
 
-    input {
-      padding:8px;
-      margin:5px;
-      width:80%;
-    }
-
-    canvas {
-      margin-top:10px;
-      max-width:100%;
-    }
-  </style>
+footer{
+  margin-top:20px;
+  padding:10px;
+  background:#0b1220;
+}
+</style>
 </head>
 
 <body>
 
-<header>🔥 CSC + Jobs + Tools Portal</header>
+<header>🔥 India Smart CSC + Job Portal</header>
+
+<input id="search" placeholder="Search Jobs..." onkeyup="searchJobs()">
 
 <h2>🧾 CSC Services</h2>
 
-<div class="card"><h3>Aadhaar</h3><a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a></div>
-<div class="card"><h3>PAN</h3><a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a></div>
+<div class="card">
+<h3>Aadhaar</h3>
+<a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a>
+</div>
+
+<div class="card">
+<h3>PAN Card</h3>
+<a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a>
+</div>
+
+<div class="card">
+<h3>Parivahan (DL)</h3>
+<a class="btn" href="https://parivahan.gov.in/" target="_blank">Open</a>
+</div>
 
 <h2>🔥 Latest Jobs</h2>
 
-<input placeholder="Search Jobs..." onkeyup="searchJobs(this.value)">
+<div id="jobs" class="section"></div>
 
-<div class="job-box" id="jobs">Loading demo jobs...</div>
+<h2>📄 Document Guide</h2>
 
-<h2>🧠 Image Resizer Tool</h2>
-
-<div class="card" style="width:90%;">
-
-  <input type="file" id="imgInput">
-
-  <br>
-
-  <label>Resize %</label>
-  <input type="range" id="size" min="10" max="100" value="100">
-
-  <br>
-
-  <label>Quality</label>
-  <input type="range" id="quality" min="10" max="100" value="80">
-
-  <br>
-
-  <label>Background</label>
-  <input type="color" id="bg" value="#ffffff">
-
-  <br>
-
-  <button class="btn" onclick="processImage()">Convert</button>
-
-  <br>
-
-  <canvas id="canvas"></canvas>
-
-  <br>
-
-  <a class="btn" id="download" download="image.jpg">Download</a>
-
+<div class="card">
+✔ Photo: 20KB - 50KB<br>
+✔ Signature: 10KB - 20KB<br>
+✔ Form: 200KB - 2MB<br>
+✔ PDF: 100KB - 1MB
 </div>
+
+<div class="card">
+<h3>Official Links</h3>
+<a class="btn" href="https://voters.eci.gov.in/" target="_blank">Voter ID</a><br>
+<a class="btn" href="https://parivahan.gov.in/" target="_blank">Driving License</a>
+</div>
+
+<footer>
+© CSC & Job Portal | India
+</footer>
 
 <script>
 
-// ---------------- DEMO JOBS (NO ERROR) ----------------
-let jobsData = [
-  { title:"SSC GD Constable 2026", category:"SSC", lastDate:"25 April 2026", eligibility:"10th Pass", link:"https://ssc.nic.in" },
-  { title:"Railway Group D", category:"Railway", lastDate:"30 April 2026", eligibility:"10th Pass", link:"https://indianrailways.gov.in" },
-  { title:"Police Vacancy", category:"Police", lastDate:"20 April 2026", eligibility:"12th Pass", link:"#"}
+// SAFE DEMO JOB DATA (NO ERROR)
+let jobs = [
+{title:"SSC GD Constable 2026",cat:"SSC",date:"25 Apr 2026"},
+{title:"Railway Group D Vacancy",cat:"Railway",date:"30 Apr 2026"},
+{title:"Police Bharti 2026",cat:"Police",date:"20 Apr 2026"},
+{title:"Bank Clerk Recruitment",cat:"Bank",date:"10 May 2026"},
+{title:"Army Rally Bharti",cat:"Army",date:"15 May 2026"}
 ];
 
-function showJobs(data){
-  let html = "";
-  data.forEach(job=>{
-    html += `
-      <div class="job">
-        <b>${job.title}</b><br>
-        <span class="tag">${job.category}</span>
-        <span class="tag">${job.lastDate}</span>
-        <p>${job.eligibility}</p>
-        <a class="btn" href="${job.link}" target="_blank">Apply</a>
-      </div>
-    `;
-  });
-
-  document.getElementById("jobs").innerHTML = html;
+function show(data){
+let html="";
+data.forEach(j=>{
+html+=`
+<div class="card">
+<h3>${j.title}</h3>
+<span class="tag">${j.cat}</span>
+<span class="tag">${j.date}</span>
+<p>Apply on official government website only.</p>
+<a class="btn" href="https://www.google.com/search?q=${j.title}" target="_blank">View Details</a>
+</div>
+`;
+});
+document.getElementById("jobs").innerHTML=html;
 }
 
-function searchJobs(q){
-  let f = jobsData.filter(j => j.title.toLowerCase().includes(q.toLowerCase()));
-  showJobs(f);
+function searchJobs(){
+let q=document.getElementById("search").value.toLowerCase();
+let f=jobs.filter(j=>j.title.toLowerCase().includes(q));
+show(f);
 }
 
-showJobs(jobsData);
+show(jobs);
 
-// ---------------- IMAGE TOOL SAFE ----------------
-function processImage(){
-
-  let file = document.getElementById("imgInput").files[0];
-  if(!file){
-    alert("Please image select karo");
-    return;
-  }
-
-  let size = document.getElementById("size").value / 100;
-  let quality = document.getElementById("quality").value / 100;
-  let bg = document.getElementById("bg").value;
-
-  let canvas = document.getElementById("canvas");
-  let ctx = canvas.getContext("2d");
-
-  let img = new Image();
-  img.src = URL.createObjectURL(file);
-
-  img.onload = function(){
-
-    canvas.width = img.width * size;
-    canvas.height = img.height * size;
-
-    ctx.fillStyle = bg;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    ctx.drawImage(img,0,0,canvas.width,canvas.height);
-
-    let url = canvas.toDataURL("image/jpeg", quality);
-
-    document.getElementById("download").href = url;
-  }
-}
 </script>
 
 </body>
