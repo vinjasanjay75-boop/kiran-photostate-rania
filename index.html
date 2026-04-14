@@ -1,135 +1,237 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Sanjay Wajrawat - Job Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Govt Jobs + Document Tool - Sanjay Wazirawat</title>
 
 <style>
 body{
-font-family: Arial;
-margin:0;
-background:#f5f5f5;
+  margin:0;
+  font-family:Arial;
+  background:#f5f5f5;
 }
 
-.header{
-background:#0d6efd;
-color:white;
-padding:15px;
-text-align:center;
-font-size:22px;
-font-weight:bold;
+header{
+  background:#16a34a;
+  color:white;
+  text-align:center;
+  padding:15px;
+  font-weight:bold;
 }
 
-.container{
-display:flex;
-flex-wrap:wrap;
-padding:10px;
+.nav{
+  background:#111827;
+  text-align:center;
+  padding:8px;
 }
 
-.box{
-background:white;
-width:100%;
-max-width:32%;
-margin:5px;
-padding:10px;
-box-shadow:0 0 5px gray;
+.nav a{
+  color:white;
+  margin:8px;
+  text-decoration:none;
+  font-size:13px;
 }
 
-.box h3{
-background:#198754;
-color:white;
-padding:8px;
-margin:0 0 10px 0;
-font-size:16px;
+.section{
+  background:white;
+  margin:10px;
+  padding:12px;
+  border-radius:6px;
 }
 
-ul{
-list-style:none;
-padding:0;
-}
-
-li{
-padding:6px 0;
-border-bottom:1px solid #ddd;
-}
-
-a{
-text-decoration:none;
-color:#0d6efd;
-font-size:14px;
-}
-
-a:hover{
-color:red;
-}
-
-.footer{
-background:black;
-color:white;
-text-align:center;
-padding:10px;
-margin-top:10px;
+.job{
+  background:#fff;
+  padding:10px;
+  margin:10px 0;
+  border-left:5px solid #16a34a;
+  cursor:pointer;
 }
 
 .btn{
-display:block;
-text-align:center;
-background:#dc3545;
-color:white;
-padding:8px;
-margin-top:10px;
+  background:#16a34a;
+  color:white;
+  padding:6px 10px;
+  text-decoration:none;
+  border-radius:5px;
+  display:inline-block;
+  margin-top:6px;
+  font-size:12px;
+}
+
+.popup{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+}
+
+.popup-content{
+  background:white;
+  width:90%;
+  max-width:400px;
+  margin:80px auto;
+  padding:15px;
+  border-radius:10px;
+}
+
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:20px;
+}
+
+input, select{
+  width:95%;
+  padding:10px;
+  margin:5px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+canvas{
+  display:none;
+}
+
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:10px;
+  font-size:12px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-SANJAY WAJRAWAT JOB PORTAL
-</div>
+<header>
+🔥 Sanjay Wazirawat - Govt Jobs + Real Document Resizer
+</header>
 
-<div class="container">
+<div class="nav">
+<a href="#jobs">Jobs</a>
+<a href="#doc">Document Tool</a>
+</div>
 
 <!-- JOBS -->
-<div class="box">
-<h3>Latest Jobs</h3>
-<ul>
-<li><a href="https://www.freejobalert.com/" target="_blank">All Govt Jobs</a></li>
-<li><a href="https://www.freejobalert.com/search-jobs/" target="_blank">Search Jobs</a></li>
-<li><a href="https://www.freejobalert.com/sarkari-naukri/" target="_blank">Sarkari Naukri</a></li>
-<li><a href="https://www.freejobalert.com/latest-notifications/" target="_blank">Latest Notifications</a></li>
-</ul>
-<a class="btn" href="https://www.freejobalert.com/" target="_blank">View All Jobs</a>
+<div class="section" id="jobs">
+<h2>📢 Latest Jobs</h2>
+
+<div class="job" onclick="openJob('SSC Selection Post','10th/12th/Graduate','04-05-2026','https://ssc.nic.in/')">
+SSC Selection Post Phase 14
 </div>
 
-<!-- ADMIT CARD -->
-<div class="box">
-<h3>Admit Card</h3>
-<ul>
-<li><a href="https://www.freejobalert.com/admit-card/" target="_blank">Download Admit Card</a></li>
-<li><a href="https://www.freejobalert.com/education/" target="_blank">Exam Updates</a></li>
-<li><a href="https://www.freejobalert.com/" target="_blank">Hall Ticket Section</a></li>
-</ul>
-<a class="btn" href="https://www.freejobalert.com/admit-card/" target="_blank">View Admit Card</a>
+<div class="job" onclick="openJob('Railway Group D','10th Pass','25-05-2026','https://indianrailways.gov.in/')">
+Railway Group D Vacancy
 </div>
 
-<!-- RESULTS -->
-<div class="box">
-<h3>Results</h3>
-<ul>
-<li><a href="https://www.freejobalert.com/exam-results/" target="_blank">Exam Results</a></li>
-<li><a href="https://www.freejobalert.com/" target="_blank">Sarkari Result</a></li>
-<li><a href="https://www.freejobalert.com/answer-key/" target="_blank">Answer Key</a></li>
-</ul>
-<a class="btn" href="https://www.freejobalert.com/exam-results/" target="_blank">View Results</a>
+<div class="job" onclick="openJob('SBI Bank Officer','Graduate','04-05-2026','https://sbi.co.in/')">
+SBI Bank Officer
 </div>
 
 </div>
 
-<div class="footer">
-© 2026 SANJAY WAJRAWAT | All Rights Reserved
+<!-- DOCUMENT TOOL -->
+<div class="section" id="doc">
+<h2>📄 REAL Image Compressor (KB Control)</h2>
+
+<input type="file" id="file" accept="image/*">
+
+<select id="quality">
+<option value="0.9">High (near original)</option>
+<option value="0.7">Medium</option>
+<option value="0.5">Low</option>
+<option value="0.3">Very Low</option>
+</select>
+
+<button class="btn" onclick="compressImage()">Compress Image</button>
+
+<p id="status"></p>
+<a id="download" class="btn" style="display:none">Download Image</a>
+
+<canvas id="canvas"></canvas>
+<img id="preview" style="max-width:100%;margin-top:10px;">
 </div>
+
+<!-- POPUP -->
+<div id="popup" class="popup">
+<div class="popup-content">
+<span class="close" onclick="closeJob()">×</span>
+
+<h3 id="title"></h3>
+<p id="qual"></p>
+<p id="date"></p>
+
+<a id="apply" class="btn" target="_blank">Apply Now</a>
+
+</div>
+</div>
+
+<script>
+
+/* JOB POPUP */
+function openJob(t,q,d,l){
+document.getElementById("popup").style.display="block";
+document.getElementById("title").innerText=t;
+document.getElementById("qual").innerText="Qualification: "+q;
+document.getElementById("date").innerText="Last Date: "+d;
+document.getElementById("apply").href=l;
+}
+
+function closeJob(){
+document.getElementById("popup").style.display="none";
+}
+
+/* REAL IMAGE COMPRESSION */
+function compressImage(){
+
+let file=document.getElementById("file").files[0];
+let quality=parseFloat(document.getElementById("quality").value);
+
+if(!file){
+alert("Select image first");
+return;
+}
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+let img=new Image();
+img.src=e.target.result;
+
+img.onload=function(){
+
+let canvas=document.getElementById("canvas");
+let ctx=canvas.getContext("2d");
+
+canvas.width=img.width;
+canvas.height=img.height;
+
+ctx.drawImage(img,0,0);
+
+let compressed=canvas.toDataURL("image/jpeg",quality);
+
+document.getElementById("preview").src=compressed;
+
+let link=document.getElementById("download");
+link.href=compressed;
+link.download="compressed.jpg";
+link.style.display="inline-block";
+
+document.getElementById("status").innerHTML="✔ Image compressed successfully";
+};
+};
+
+reader.readAsDataURL(file);
+}
+
+</script>
+
+<footer>
+© 2026 Sanjay Wazirawat | Govt Jobs Portal
+</footer>
 
 </body>
 </html>
