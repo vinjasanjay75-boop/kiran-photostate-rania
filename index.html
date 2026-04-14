@@ -2,45 +2,169 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Live Jobs Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All India Jobs + CSC Portal</title>
 
 <style>
-body{font-family:Arial;background:#f5f5f5;margin:0;}
-header{background:#16a34a;color:white;text-align:center;padding:15px;}
-.job{background:white;margin:10px;padding:10px;border-left:5px solid green;}
-a{background:green;color:white;padding:5px;text-decoration:none;border-radius:5px;}
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+}
+
+header{
+background:#16a34a;
+color:white;
+text-align:center;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+}
+
+.nav{
+background:#111827;
+text-align:center;
+padding:8px;
+}
+
+.nav a{
+color:white;
+margin:6px;
+text-decoration:none;
+font-size:13px;
+}
+
+.search{
+text-align:center;
+padding:10px;
+}
+
+.search input{
+width:90%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.section{
+background:white;
+margin:10px;
+padding:12px;
+border-radius:8px;
+}
+
+.card{
+border-left:5px solid #16a34a;
+padding:10px;
+margin:10px 0;
+background:#fff;
+}
+
+.btn{
+display:inline-block;
+margin-top:6px;
+padding:6px 10px;
+background:#16a34a;
+color:white;
+text-decoration:none;
+border-radius:5px;
+font-size:12px;
+}
+
+footer{
+background:#111827;
+color:white;
+text-align:center;
+padding:10px;
+font-size:12px;
+margin-top:20px;
+}
 </style>
 </head>
 
 <body>
 
-<header>🔥 LIVE Govt Jobs Portal</header>
+<header>
+🔥 All India Govt Jobs + CSC Services Portal
+</header>
 
-<div id="jobs"></div>
+<div class="nav">
+<a href="#jobs">Jobs</a>
+<a href="#ssc">SSC</a>
+<a href="#rail">Railway</a>
+<a href="#bank">Bank</a>
+<a href="#csc">CSC</a>
+</div>
+
+<div class="search">
+<input type="text" id="search" placeholder="Search jobs or services..." onkeyup="searchData()">
+</div>
+
+<!-- JOBS -->
+<div class="section" id="jobs">
+<h2>📢 Latest Govt Jobs</h2>
+
+<div class="card">SSC Selection Post Phase 14<br><small>10th / 12th / Graduate</small><br><a class="btn" href="https://ssc.nic.in/" target="_blank">Apply</a></div>
+
+<div class="card">Railway Group D Vacancy<br><small>10th Pass</small><br><a class="btn" href="https://indianrailways.gov.in/" target="_blank">Apply</a></div>
+
+<div class="card">SBI Bank Recruitment<br><small>Graduate</small><br><a class="btn" href="https://sbi.co.in/" target="_blank">Apply</a></div>
+
+<div class="card">UPSC Civil Services<br><small>Graduate</small><br><a class="btn" href="https://upsc.gov.in/" target="_blank">Apply</a></div>
+
+<div class="card">Police Constable Jobs<br><small>12th Pass</small><br><a class="btn" href="https://hssc.gov.in/" target="_blank">Apply</a></div>
+
+</div>
+
+<!-- SSC -->
+<div class="section" id="ssc">
+<h2>🏛 SSC Jobs</h2>
+<div class="card">SSC CGL / CHSL / Selection Post<br><a class="btn" href="https://ssc.nic.in/" target="_blank">Open</a></div>
+</div>
+
+<!-- RAILWAY -->
+<div class="section" id="rail">
+<h2>🚆 Railway Jobs</h2>
+<div class="card">RRB NTPC / Group D / ALP<br><a class="btn" href="https://indianrailways.gov.in/" target="_blank">Open</a></div>
+</div>
+
+<!-- BANK -->
+<div class="section" id="bank">
+<h2>🏦 Bank Jobs</h2>
+<div class="card">SBI / IBPS / RBI Jobs<br><a class="btn" href="https://ibps.in/" target="_blank">Open</a></div>
+</div>
+
+<!-- CSC -->
+<div class="section" id="csc">
+<h2>🏢 CSC Services</h2>
+
+<div class="card">Aadhaar Update / PVC Card<br><a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a></div>
+
+<div class="card">PAN Card Apply<br><a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a></div>
+
+<div class="card">Voter ID Services<br><a class="btn" href="https://voters.eci.gov.in/" target="_blank">Open</a></div>
+
+<div class="card">PM Kisan / E-Shram / Pension<br><a class="btn" href="https://pmkisan.gov.in/" target="_blank">Open</a></div>
+
+<div class="card">Driving License / RTO<br><a class="btn" href="https://parivahan.gov.in/" target="_blank">Open</a></div>
+
+<div class="card">Bill Payment / Recharge / AEPS<br><small>Electricity | Gas | Mobile | Banking</small></div>
+
+</div>
+
+<footer>
+© 2026 All India Jobs & CSC Portal | Sanjay Wazirawat
+</footer>
 
 <script>
+function searchData(){
+let input=document.getElementById("search").value.toLowerCase();
+let cards=document.getElementsByClassName("card");
 
-fetch("jobs.json")
-.then(res=>res.json())
-.then(data=>{
-
-let html="";
-
-data.forEach(job=>{
-html+=`
-<div class="job">
-<h3>${job.title}</h3>
-<p>${job.qualification}</p>
-<p>Last Date: ${job.lastDate}</p>
-<a href="${job.link}" target="_blank">Apply</a>
-</div>
-`;
-});
-
-document.getElementById("jobs").innerHTML=html;
-
-});
-
+for(let i=0;i<cards.length;i++){
+cards[i].style.display=cards[i].innerText.toLowerCase().includes(input)?"block":"none";
+}
+}
 </script>
 
 </body>
