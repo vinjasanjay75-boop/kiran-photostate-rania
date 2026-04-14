@@ -2,20 +2,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sanjay Wazirawat CSC & All India Jobs</title>
+<title>All India Govt Jobs Portal</title>
 
 <style>
 body{
-  margin:0;
   font-family:Arial;
-  background:#f5f5f5;
+  margin:0;
+  background:#f4f4f4;
 }
 
 header{
-  background:linear-gradient(90deg,#16a34a,#22c55e);
+  background:#16a34a;
   color:white;
   text-align:center;
-  padding:18px;
+  padding:15px;
   font-size:18px;
   font-weight:bold;
 }
@@ -33,59 +33,45 @@ header{
   font-size:13px;
 }
 
-.section-title{
-  background:white;
-  margin-top:15px;
-  padding:10px;
-  font-weight:bold;
-  border-left:5px solid #16a34a;
+.search{
+  text-align:center;
+  margin:10px;
 }
 
 input{
   width:90%;
   padding:10px;
-  margin:10px;
   border-radius:8px;
   border:1px solid #ccc;
 }
 
-table{
-  width:95%;
-  margin:auto;
+.box{
   background:white;
-  border-collapse:collapse;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  margin:10px;
+  padding:12px;
+  border-left:5px solid #16a34a;
 }
 
-th,td{
-  border:1px solid #ddd;
-  padding:8px;
-  font-size:13px;
-  text-align:center;
+.box h3{
+  margin:0;
 }
 
-th{
-  background:#16a34a;
-  color:white;
+.tag{
+  font-size:12px;
+  background:#eee;
+  padding:4px 6px;
+  border-radius:5px;
 }
 
 .btn{
+  display:inline-block;
+  margin-top:6px;
+  padding:6px 10px;
   background:#16a34a;
   color:white;
-  padding:5px 8px;
   text-decoration:none;
   border-radius:5px;
   font-size:12px;
-}
-
-.card{
-  background:white;
-  margin:10px;
-  padding:15px;
-  display:inline-block;
-  width:260px;
-  border-radius:10px;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 footer{
@@ -96,110 +82,68 @@ footer{
   padding:10px;
   font-size:12px;
 }
-
-.whatsapp{
-  position:fixed;
-  right:15px;
-  bottom:15px;
-  background:#25D366;
-  color:white;
-  padding:12px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
-}
 </style>
 </head>
 
 <body>
 
 <header>
-🔥 Sanjay Wazirawat CSC Portal | All India Govt Jobs | Documents Apply
-<br>
-📞 8168205553 | Near Govt Girl College Rania
+🔥 All India Govt Jobs Portal
 </header>
 
 <div class="nav">
-<a href="#jobs">Jobs</a>
-<a href="#bank">Bank</a>
-<a href="#ssc">SSC</a>
-<a href="#docs">Documents</a>
+<a href="#">Home</a>
+<a href="#">SSC</a>
+<a href="#">Bank</a>
+<a href="#">Railway</a>
+<a href="#">State</a>
 </div>
 
-<input id="search" placeholder="Search Jobs / Documents..." onkeyup="search()">
-
-<!-- JOBS -->
-<div class="section-title" id="jobs">🔥 All India Latest Jobs</div>
-
-<table>
-<tr>
-<th>Date</th><th>Board</th><th>Post</th><th>Last Date</th><th>Action</th>
-</tr>
-
-<tr>
-<td>13/04/2026</td><td>SBI</td><td>Analyst</td><td>04-05-2026</td>
-<td><a class="btn" href="https://sbi.co.in/" target="_blank">Apply</a></td>
-</tr>
-
-<tr>
-<td>13/04/2026</td><td>SSC</td><td>Selection Post Phase 14</td><td>04-05-2026</td>
-<td><a class="btn" href="https://ssc.nic.in/" target="_blank">Apply</a></td>
-</tr>
-
-<tr>
-<td>12/04/2026</td><td>Railway</td><td>Group D</td><td>25-05-2026</td>
-<td><a class="btn" href="https://indianrailways.gov.in/" target="_blank">Apply</a></td>
-</tr>
-
-<tr>
-<td>11/04/2026</td><td>Police</td><td>Constable</td><td>20-05-2026</td>
-<td><a class="btn" href="https://hssc.gov.in/" target="_blank">Apply</a></td>
-</tr>
-</table>
-
-<!-- DOCUMENTS -->
-<div class="section-title" id="docs">📄 Documents Apply</div>
-
-<div class="card">
-<h3>Aadhaar Card</h3>
-<a class="btn" href="https://uidai.gov.in/" target="_blank">Apply</a>
+<div class="search">
+<input id="search" placeholder="Search jobs..." onkeyup="searchJobs()">
 </div>
 
-<div class="card">
-<h3>PAN Card</h3>
-<a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Apply</a>
+<div id="jobs">
+
+<div class="box">
+<h3>SSC Selection Post Phase 14</h3>
+<p>10th / 12th / Graduate</p>
+<span class="tag">SSC</span><br>
+<a class="btn" href="https://ssc.nic.in/" target="_blank">Apply</a>
 </div>
 
-<div class="card">
-<h3>Voter ID</h3>
-<a class="btn" href="https://voters.eci.gov.in/" target="_blank">Apply</a>
+<div class="box">
+<h3>Railway Group D Vacancy</h3>
+<p>10th Pass</p>
+<span class="tag">Railway</span><br>
+<a class="btn" href="https://indianrailways.gov.in/" target="_blank">Apply</a>
 </div>
 
-<div class="card">
-<h3>Driving License</h3>
-<a class="btn" href="https://parivahan.gov.in/" target="_blank">Apply</a>
+<div class="box">
+<h3>SBI Bank Jobs</h3>
+<p>Graduate</p>
+<span class="tag">Bank</span><br>
+<a class="btn" href="https://sbi.co.in/" target="_blank">Apply</a>
 </div>
 
-<!-- CONTACT -->
-<a class="whatsapp" href="https://wa.me/918168205553">WhatsApp</a>
-
-<footer>
-© 2026 Sanjay Wazirawat CSC Portal | All Rights Reserved
-</footer>
+</div>
 
 <script>
 
-function search(){
+function searchJobs(){
 let input=document.getElementById("search").value.toLowerCase();
-let rows=document.getElementsByTagName("tr");
+let boxes=document.getElementsByClassName("box");
 
-for(let i=1;i<rows.length;i++){
-rows[i].style.display=
-rows[i].innerText.toLowerCase().includes(input) ? "" : "none";
+for(let b of boxes){
+b.style.display = b.innerText.toLowerCase().includes(input) ? "block" : "none";
 }
 }
 
 </script>
+
+<footer>
+© 2026 Govt Jobs Portal
+</footer>
 
 </body>
 </html>
