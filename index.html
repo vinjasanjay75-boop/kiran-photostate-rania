@@ -2,210 +2,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Live Govt Jobs + CSC Portal</title>
+<title>Live Jobs Portal</title>
 
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:#f5f5f5;
-}
-
-header{
-background:#16a34a;
-color:white;
-text-align:center;
-padding:15px;
-font-weight:bold;
-}
-
-.nav{
-background:#111827;
-text-align:center;
-padding:8px;
-}
-
-.nav a{
-color:white;
-margin:6px;
-text-decoration:none;
-font-size:12px;
-}
-
-input{
-width:90%;
-padding:10px;
-margin:10px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-.section{
-background:white;
-margin:10px;
-padding:12px;
-border-radius:8px;
-}
-
-.card{
-border-left:5px solid #16a34a;
-padding:10px;
-margin:8px 0;
-background:#fff;
-}
-
-.btn{
-background:#16a34a;
-color:white;
-padding:6px 10px;
-text-decoration:none;
-border-radius:5px;
-font-size:12px;
-display:inline-block;
-margin-top:5px;
-}
-
-.live{
-background:red;
-color:white;
-font-size:10px;
-padding:2px 6px;
-border-radius:5px;
-margin-left:5px;
-}
-
-footer{
-background:#111827;
-color:white;
-text-align:center;
-padding:10px;
-font-size:12px;
-}
+body{font-family:Arial;background:#f5f5f5;margin:0;}
+header{background:#16a34a;color:white;text-align:center;padding:15px;}
+.job{background:white;margin:10px;padding:10px;border-left:5px solid green;}
+a{background:green;color:white;padding:5px;text-decoration:none;border-radius:5px;}
 </style>
 </head>
 
 <body>
 
-<header>
-🔥 LIVE Govt Jobs + CSC Services Portal
-</header>
+<header>🔥 LIVE Govt Jobs Portal</header>
 
-<div class="nav">
-<a href="#jobs">Jobs</a>
-<a href="#csc">CSC</a>
-<a href="#bank">Bank</a>
-<a href="#rail">Railway</a>
-<a href="#ssc">SSC</a>
-</div>
-
-<input id="search" placeholder="Search jobs / services..." onkeyup="search()">
-
-<!-- JOBS -->
-<div class="section" id="jobs">
-<h2>📢 LIVE Job Updates <span class="live">AUTO UI</span></h2>
-
-<div class="card">SSC Selection Post Phase 14<br>
-<small>10th / 12th / Graduate</small><br>
-<a class="btn" href="https://ssc.nic.in/" target="_blank">Apply</a>
-</div>
-
-<div class="card">Railway Group D Vacancy<br>
-<small>10th Pass</small><br>
-<a class="btn" href="https://indianrailways.gov.in/" target="_blank">Apply</a>
-</div>
-
-<div class="card">SBI Bank PO / Clerk<br>
-<small>Graduate</small><br>
-<a class="btn" href="https://sbi.co.in/" target="_blank">Apply</a>
-</div>
-
-<div class="card">CRPF / Defence Jobs<br>
-<small>10th / 12th</small><br>
-<a class="btn" href="https://crpf.gov.in/" target="_blank">Apply</a>
-</div>
-
-<div class="card">UPSC Civil Services<br>
-<small>Graduate</small><br>
-<a class="btn" href="https://upsc.gov.in/" target="_blank">Apply</a>
-</div>
-
-</div>
-
-<!-- CSC -->
-<div class="section" id="csc">
-<h2>🏢 CSC SERVICES (ALL INDIA)</h2>
-
-<div class="card">Aadhaar Update / PVC Card<br>
-<a class="btn" href="https://uidai.gov.in/" target="_blank">Open</a>
-</div>
-
-<div class="card">PAN Card Apply<br>
-<a class="btn" href="https://www.protean-tinpan.com/" target="_blank">Open</a>
-</div>
-
-<div class="card">Voter ID Service<br>
-<a class="btn" href="https://voters.eci.gov.in/" target="_blank">Open</a>
-</div>
-
-<div class="card">PM Kisan / E-Shram / Pension<br>
-<a class="btn" href="https://pmkisan.gov.in/" target="_blank">Open</a>
-</div>
-
-<div class="card">Driving License / RTO<br>
-<a class="btn" href="https://parivahan.gov.in/" target="_blank">Open</a>
-</div>
-
-</div>
-
-<!-- BANK -->
-<div class="section" id="bank">
-<h2>🏦 BANK JOBS</h2>
-
-<div class="card">SBI / IBPS / RBI Jobs<br>
-<a class="btn" href="https://ibps.in/" target="_blank">Open</a>
-</div>
-
-</div>
-
-<!-- RAILWAY -->
-<div class="section" id="rail">
-<h2>🚆 RAILWAY JOBS</h2>
-
-<div class="card">RRB NTPC / Group D / ALP<br>
-<a class="btn" href="https://indianrailways.gov.in/" target="_blank">Open</a>
-</div>
-
-</div>
-
-<!-- SSC -->
-<div class="section" id="ssc">
-<h2>🏛 SSC JOBS</h2>
-
-<div class="card">SSC CGL / CHSL / Selection Post<br>
-<a class="btn" href="https://ssc.nic.in/" target="_blank">Open</a>
-</div>
-
-</div>
-
-<footer>
-© 2026 LIVE Govt Jobs Portal | Sanjay Wazirawat
-</footer>
+<div id="jobs"></div>
 
 <script>
 
-function search(){
-let input=document.getElementById("search").value.toLowerCase();
-let cards=document.getElementsByClassName("card");
+fetch("jobs.json")
+.then(res=>res.json())
+.then(data=>{
 
-for(let c of cards){
-c.style.display=c.innerText.toLowerCase().includes(input)?"block":"none";
-}
-}
+let html="";
 
-/* LIVE UPDATE SIMULATION */
-setInterval(()=>{
-console.log("Checking new jobs...");
-},5000);
+data.forEach(job=>{
+html+=`
+<div class="job">
+<h3>${job.title}</h3>
+<p>${job.qualification}</p>
+<p>Last Date: ${job.lastDate}</p>
+<a href="${job.link}" target="_blank">Apply</a>
+</div>
+`;
+});
+
+document.getElementById("jobs").innerHTML=html;
+
+});
 
 </script>
 
